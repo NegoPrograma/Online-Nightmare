@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class PanelSwitch : MonoBehaviour
 {
-    public GameObject lobbyPanel;
-    public GameObject loginPanel;
+    public static GameObject lobbyPanel;
+    public static GameObject loginPanel;
     void Start(){
         lobbyPanel = GameObject.Find("LobbyPanel");
         loginPanel = GameObject.Find("LoginPanel");

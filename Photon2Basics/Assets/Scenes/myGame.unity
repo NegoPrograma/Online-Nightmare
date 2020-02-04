@@ -469,7 +469,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 29.975521
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -619,6 +619,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b6b23e4c96889f4b81b3a6890470716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 7326708673866170571, guid: 2ddb3af77b16fd144840ce1f0018bd29,
+    type: 3}
 --- !u!1 &758892816
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,8 +812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28cdd7436ced2c4480a87c0a55a3c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lobbyPanel: {fileID: 0}
-  loginPanel: {fileID: 0}
 --- !u!1 &955307609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,11 +1138,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
