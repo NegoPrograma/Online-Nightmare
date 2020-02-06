@@ -12,11 +12,9 @@ GameObject:
   - component: {fileID: 1034884472587829977}
   - component: {fileID: 4116578443113327071}
   - component: {fileID: 7265615693312560179}
-  - component: {fileID: 6612502998061866183}
-  - component: {fileID: 8218030548427330264}
-  - component: {fileID: 5895049732463712869}
+  - component: {fileID: -3799451662954057600}
   m_Layer: 0
-  m_Name: myBullet
+  m_Name: MyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b0c4b15f0f20d2346be496e327414529, type: 3}
-  m_Color: {r: 0.22877358, g: 0.9150943, b: 0.82498384, a: 1}
+  m_Color: {r: 0.9137255, g: 0.22745094, b: 0.2980251, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -116,7 +114,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -132,7 +130,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.35, y: 0.42}
   m_EdgeRadius: 0
---- !u!114 &6612502998061866183
+--- !u!114 &-3799451662954057600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,44 +139,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3879315620993784369}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 8218030548427330264}
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &8218030548427330264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3879315620993784369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 0
-  m_SynchronizeScale: 0
---- !u!114 &5895049732463712869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3879315620993784369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9636b220db4b5a14b81441e8ca640b49, type: 3}
+  m_Script: {fileID: 11500000, guid: fa421f383df0e3d42a43a756e1eddfdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rigid: {fileID: 0}
@@ -187,4 +148,3 @@ MonoBehaviour:
   bulletTimeCount: 0
   bulletDirection: {x: 0, y: 0}
   initialPos: {x: 0, y: 0}
-  bulletView: {fileID: 0}

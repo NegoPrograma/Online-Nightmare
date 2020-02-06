@@ -5,16 +5,17 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PlayerControler : MonoBehaviour
+public class PlayerController : MonoBehaviourPunCallbacks
 {
 
-    public float playerSpeed = 40f;
+    public float playerSpeed = 42f;
     public PhotonView playerView;
 
     private Rigidbody2D rigid;
 
 
     public Vector2 playerAim;
+    public GameObject bulletSprite;
     public GameObject bulletSpawn;
 
     public Image playerHealthHeader;
@@ -27,21 +28,25 @@ public class PlayerControler : MonoBehaviour
         playerMaxHealth = 100f;
         playerCurrentHealth = playerMaxHealth;
         bulletSpawn = GameObject.Find("spawnBullet");
+        playerHealthHeader = GameObject.Find("currentHealth").GetComponent<Image>();
     }
 
     void Update()
     {
-        if(!playerView.IsMine)
-            return;
-        PlayerMove();
-        PlayerRotation();
-        /*if(Input.GetKeyDown(KeyCode.U))
+        if(playerView.IsMine){
+            PlayerMove();
+            PlayerRotation();
+            /*if(Input.GetKeyDown(KeyCode.U))
             HealthUpdate(-10f);
-        */
-        if(Input.GetKeyDown(KeyCode.E))
+            */
+            if(Input.GetKeyDown(KeyCode.E)){
+            //    ShootBullet();
+                playerView.RPC("ShootBulletRPC",RpcTarget.All);
+            }
+            else if(Input.GetKeyDown(KeyCode.Q)){
                 ShootBullet();
-
-
+            }
+        }
     }
 
     public void PlayerMove(){
@@ -65,12 +70,30 @@ public class PlayerControler : MonoBehaviour
     }
 
     public void ShootBullet(){
-        PhotonNetwork.Instantiate("myBullet",bulletSpawn.transform.position,bulletSpawn.transform.rotation);
+        PhotonNetwork.Instantiate("MyBullet",bulletSpawn.transform.position,bulletSpawn.transform.rotation);
     }
+
+
+    [PunRPC]
+    public void ShootBulletRPC(){
+        Debug.Log("I got called, bitch!");
+        Instantiate(bulletSprite,bulletSpawn.transform.position,bulletSpawn.transform.rotation);
+    }
+
+
+    public void takeDamage(float value){
+        playerView.RPC("takeDamageNetwork",RpcTarget.AllBuffered,value);
+    }
+
+
+    [PunRPC]
+    void takeDamageNetwork(float damage){
+        HealthUpdate(damage);
+    }
+
 
     public void HealthUpdate(float damage){
         playerCurrentHealth +=damage;
-        //o percentual da imagem vai de 0.0 até 1, e como o HP maximo é 100, deve-se dividir por 100 para garantir proporcionalidade
         playerHealthHeader.fillAmount = playerCurrentHealth/100;
     }
 }
