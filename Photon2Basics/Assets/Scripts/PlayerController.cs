@@ -8,7 +8,7 @@ using Photon.Realtime;
 public class PlayerController : MonoBehaviourPunCallbacks
 {
 
-    public float playerSpeed = 42f;
+    public float playerSpeed = 43f;
     public PhotonView playerView;
 
     private Rigidbody2D rigid;
@@ -27,8 +27,6 @@ public class PlayerController : MonoBehaviourPunCallbacks
         playerView = gameObject.GetComponent<PhotonView>();
         playerMaxHealth = 100f;
         playerCurrentHealth = playerMaxHealth;
-        bulletSpawn = GameObject.Find("spawnBullet");
-        playerHealthHeader = GameObject.Find("currentHealth").GetComponent<Image>();
     }
 
     void Update()
@@ -41,10 +39,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             */
             if(Input.GetKeyDown(KeyCode.E)){
             //    ShootBullet();
-                playerView.RPC("ShootBulletRPC",RpcTarget.All);
-            }
-            else if(Input.GetKeyDown(KeyCode.Q)){
-                ShootBullet();
+                playerView.RPC("ShootBulletRPC",RpcTarget.AllBuffered);
             }
         }
     }
@@ -69,15 +64,15 @@ public class PlayerController : MonoBehaviourPunCallbacks
         transform.up = playerAim;
     }
 
-    public void ShootBullet(){
-        PhotonNetwork.Instantiate("MyBullet",bulletSpawn.transform.position,bulletSpawn.transform.rotation);
-    }
+    /*public void ShootBullet(){
+        PhotonNetwork.Instantiate("MyBulletPhotonView",bulletSpawn.transform.position,bulletSpawn.transform.rotation);
+    }*/
 
 
     [PunRPC]
     public void ShootBulletRPC(){
         Debug.Log("I got called, bitch!");
-        Instantiate(bulletSprite,bulletSpawn.transform.position,bulletSpawn.transform.rotation);
+        Instantiate(this.bulletSprite,this.bulletSpawn.transform.position,this.bulletSpawn.transform.rotation);
     }
 
 
@@ -93,7 +88,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
 
     public void HealthUpdate(float damage){
-        playerCurrentHealth +=damage;
-        playerHealthHeader.fillAmount = playerCurrentHealth/100;
+        this.playerCurrentHealth +=damage;
+        this.playerHealthHeader.fillAmount = this.playerCurrentHealth/100;
     }
 }

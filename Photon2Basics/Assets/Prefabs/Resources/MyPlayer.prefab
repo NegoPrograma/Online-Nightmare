@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4338265244157554179}
   - component: {fileID: 86957167226245147}
   - component: {fileID: 3562836850951584651}
-  - component: {fileID: 6561694256310946826}
+  - component: {fileID: 5292874983331603534}
   m_Layer: 0
   m_Name: MyPlayer
   m_TagString: Untagged
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 1
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
---- !u!114 &6561694256310946826
+--- !u!114 &5292874983331603534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,13 +141,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d086a93d3167a4bb7496c9f040ac9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 42
+  playerSpeed: 43
   playerView: {fileID: 0}
   playerAim: {x: 0, y: 0}
   bulletSprite: {fileID: 3879315620993784369, guid: 441958d03ad975f47989b007890d598a,
     type: 3}
   bulletSpawn: {fileID: 4889233784697067417}
-  playerHealthHeader: {fileID: 0}
+  playerHealthHeader: {fileID: 8695240027096535219}
   playerMaxHealth: 0
   playerCurrentHealth: 0
 --- !u!1 &2091359095230216347
