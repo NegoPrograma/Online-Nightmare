@@ -150,6 +150,7 @@ MonoBehaviour:
   bulletTimeCount: 0
   bulletDirection: {x: 0, y: 0}
   initialPos: {x: 0, y: 0}
+  bulletView: {fileID: -8087496842068659331}
 --- !u!114 &-8087496842068659331
 MonoBehaviour:
   m_ObjectHideFlags: 0

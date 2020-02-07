@@ -34,12 +34,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
         if(playerView.IsMine){
             PlayerMove();
             PlayerRotation();
-            /*if(Input.GetKeyDown(KeyCode.U))
-            HealthUpdate(-10f);
-            */
             if(Input.GetKeyDown(KeyCode.E)){
-            //    ShootBullet();
-                playerView.RPC("ShootBulletRPC",RpcTarget.AllBuffered);
+               ShootBullet();
+            //    playerView.RPC("ShootBulletRPC",RpcTarget.All);
             }
         }
     }
@@ -64,14 +61,13 @@ public class PlayerController : MonoBehaviourPunCallbacks
         transform.up = playerAim;
     }
 
-    /*public void ShootBullet(){
+    public void ShootBullet(){
         PhotonNetwork.Instantiate("MyBulletPhotonView",bulletSpawn.transform.position,bulletSpawn.transform.rotation);
-    }*/
+    }
 
 
     [PunRPC]
     public void ShootBulletRPC(){
-        Debug.Log("I got called, bitch!");
         Instantiate(this.bulletSprite,this.bulletSpawn.transform.position,this.bulletSpawn.transform.rotation);
     }
 

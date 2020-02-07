@@ -12,6 +12,7 @@ public class BulletControler : MonoBehaviourPun
     public float bulletTimeCount;
     public Vector2 bulletDirection;
     public Vector2 initialPos;
+    public PhotonView bulletView;
 
    // public PhotonView bulletView;
 
@@ -24,7 +25,6 @@ public class BulletControler : MonoBehaviourPun
     void Start()
     {
         rigid = gameObject.GetComponent<Rigidbody2D>();
-     //   bulletView = gameObject.GetComponent<PhotonView>();
         bulletSpeed = 100f;
         bulletLifeTime = 5f;
         moveBullet();
@@ -34,7 +34,7 @@ public class BulletControler : MonoBehaviourPun
     void Update()
     {
         if(bulletTimeCount > bulletLifeTime){
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
         bulletTimeCount += Time.deltaTime;            
     }
@@ -43,15 +43,17 @@ public class BulletControler : MonoBehaviourPun
         //check if collided with a player prefab that isn't yours
             PlayerController collidedPlayer = collision.gameObject.GetComponent<PlayerController>();
             if(!collidedPlayer.playerView.IsMine && collidedPlayer != null){
-                Debug.Log("Triggerd!");
                 collidedPlayer.takeDamage(-10f);
-                Destroy(gameObject);
+                bulletView.RPC("bulletDestroy",RpcTarget.AllViaServer);
             }
     }
 
     public void moveBullet(){
-
         rigid.AddForce(transform.up*bulletSpeed,ForceMode2D.Force);
+    }
 
+    [PunRPC]
+    public void bulletDestroy(){
+        Destroy(this.gameObject);
     }
 }

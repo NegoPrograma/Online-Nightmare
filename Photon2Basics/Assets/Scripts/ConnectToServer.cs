@@ -13,6 +13,8 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
             Debug.Log("Welcome, " + SetNickname.nickname + ". You're now connecting to our servers.");
         }
     }
+
+    
     
 
 }

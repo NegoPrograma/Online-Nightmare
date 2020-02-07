@@ -13,11 +13,7 @@ public class PanelSwitch : MonoBehaviour
         lobbyPanel.SetActive(false);
         loginPanel.SetActive(true);
     }
-
-    public void  InvokeToggleState(){
-        Invoke("togglePanelState",5f);
-    }
-    private void togglePanelState(){
+    public static void togglePanelState(){
         if(!SetNickname.nickname.Equals("")){
             lobbyPanel.SetActive(true);
             loginPanel.SetActive(false);

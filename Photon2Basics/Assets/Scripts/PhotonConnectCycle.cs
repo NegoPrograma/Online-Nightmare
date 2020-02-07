@@ -12,6 +12,13 @@ public class PhotonConnectCycle : MonoBehaviourPunCallbacks
         Debug.Log("onConnected stage achieved: next one should be ConnectedToMaster");
     }
 
+    public override void OnDisconnected(DisconnectCause cause){
+        Debug.Log("Error! "+ cause);
+        Debug.Log("Trying to return you to lobby.");
+        PhotonNetwork.Reconnect();
+        PhotonNetwork.JoinLobby();
+    }
+
     public override void OnConnectedToMaster(){
         Debug.Log("OnConnectedToMaster stage achieved, you're successfully connected to the server. you may enter the lobby now.");
         Debug.Log("Server hosted at: "+ PhotonNetwork.CloudRegion + ", your ping on connection:" + PhotonNetwork.GetPing());
@@ -21,6 +28,7 @@ public class PhotonConnectCycle : MonoBehaviourPunCallbacks
 
     public override void OnJoinedLobby(){
         Debug.Log("You are now at the lobby.");
+        PanelSwitch.togglePanelState();
     }
 
     public override void OnJoinedRoom(){
@@ -29,8 +37,9 @@ public class PhotonConnectCycle : MonoBehaviourPunCallbacks
         Debug.Log("Current Player Count:" + PhotonNetwork.CurrentRoom.PlayerCount);
         
         //Instantiate(playerPrefab,new Vector3(0,0,0),Quaternion.Euler(0,0,90));
-        PhotonNetwork.Instantiate(playerPrefab.name,new Vector3(0,0,0),Quaternion.Euler(0,0,90),0);
         PanelSwitch.lobbyPanel.SetActive(false);
+        PhotonNetwork.Instantiate(playerPrefab.name,new Vector3(0,0,0),Quaternion.Euler(0,0,90),0);
+        
     }
 
 
