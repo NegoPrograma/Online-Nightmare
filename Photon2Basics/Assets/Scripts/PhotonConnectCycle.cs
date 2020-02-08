@@ -36,10 +36,26 @@ public class PhotonConnectCycle : MonoBehaviourPunCallbacks
         Debug.Log("Current room name:" + PhotonNetwork.CurrentRoom.Name);
         Debug.Log("Current Player Count:" + PhotonNetwork.CurrentRoom.PlayerCount);
         
-        //Instantiate(playerPrefab,new Vector3(0,0,0),Quaternion.Euler(0,0,90));
+        object gameModeSelected;
+        if(PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(GameModeController.gameModeKey, out gameModeSelected)){
+            Debug.Log("GameMode Selected:" + gameModeSelected.ToString());
+        }
         PanelSwitch.lobbyPanel.SetActive(false);
         PhotonNetwork.Instantiate(playerPrefab.name,new Vector3(0,0,0),Quaternion.Euler(0,0,90),0);
         
+    }
+
+    public override void OnJoinRandomFailed(short returnCode, string message){
+        string randomGeneratedRoomName ="Room"+Random.Range(1,5000).ToString()+Random.Range(1,5000).ToString();
+        RoomOptions options = new RoomOptions();
+        options.IsOpen = true;
+        options.IsVisible = true;
+        options.MaxPlayers = GameModeController.playerLimitPerRoom;
+        options.CustomRoomProperties = GameModeController.gameMode;
+        //todas as opçoes acima são visiveis apenas pela sala, logo o searching do join random room não funcionaria
+        //para deixar as salas visíveis pelo lobby, é necessário setar quais infos sobre sua sala são visíveis, vide linha abaixo 
+        options.CustomRoomPropertiesForLobby = new string[] { GameModeController.gameModeKey};
+        PhotonNetwork.CreateRoom(randomGeneratedRoomName,options);
     }
 
 
