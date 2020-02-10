@@ -39,5 +39,6 @@ MonoBehaviour:
   - takeDamageNetwork
   - ShootBulletRPC
   - bulletDestroy
+  - isGameOver
   DisableAutoOpenWizard: 1
   ShowSettings: 1

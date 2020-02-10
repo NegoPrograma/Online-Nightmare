@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 public class BulletControler : MonoBehaviourPun
 {
 
@@ -14,17 +15,9 @@ public class BulletControler : MonoBehaviourPun
     public Vector2 initialPos;
     public PhotonView bulletView;
 
-   // public PhotonView bulletView;
 
-
-    public void SetDirection(Vector2 bulletDirection,Vector2 initialPos){
-        this.bulletDirection = bulletDirection;
-        this.initialPos = initialPos;
-
-    }
     void Start()
     {
-        rigid = gameObject.GetComponent<Rigidbody2D>();
         bulletSpeed = 100f;
         bulletLifeTime = 5f;
         moveBullet();
@@ -42,9 +35,11 @@ public class BulletControler : MonoBehaviourPun
     void OnTriggerEnter2D(Collider2D collision){
         //check if collided with a player prefab that isn't yours
             PlayerController collidedPlayer = collision.gameObject.GetComponent<PlayerController>();
+            //
             if(!collidedPlayer.playerView.IsMine && collidedPlayer != null){
-                collidedPlayer.takeDamage(-10f);
-                bulletView.RPC("bulletDestroy",RpcTarget.AllViaServer);
+                //o owner do bullet view é o mesmo do player, visto que o owner é por client, favor fazer nota.
+                collidedPlayer.takeDamage(-10f,bulletView.Owner);
+                bulletView.RPC("bulletDestroy",RpcTarget.All);
             }
     }
 

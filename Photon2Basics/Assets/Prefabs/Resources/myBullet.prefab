@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 1034884472587829977}
   - component: {fileID: 4116578443113327071}
   - component: {fileID: 7265615693312560179}
-  - component: {fileID: 1054367520950067111}
+  - component: {fileID: 3142100980300590506}
+  - component: {fileID: 6898631134853491775}
+  - component: {fileID: 5999497873599539495}
   m_Layer: 0
   m_Name: MyBullet
   m_TagString: Untagged
@@ -130,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.35, y: 0.42}
   m_EdgeRadius: 0
---- !u!114 &1054367520950067111
+--- !u!114 &3142100980300590506
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,9 +144,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa421f383df0e3d42a43a756e1eddfdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigid: {fileID: 0}
+  rigid: {fileID: 4116578443113327071}
   bulletSpeed: 0
   bulletLifeTime: 0
   bulletTimeCount: 0
   bulletDirection: {x: 0, y: 0}
   initialPos: {x: 0, y: 0}
+  bulletView: {fileID: 6898631134853491775}
+--- !u!114 &6898631134853491775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3879315620993784369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 5999497873599539495}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &5999497873599539495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3879315620993784369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
